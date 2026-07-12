@@ -160,6 +160,7 @@
 
   /* ---------- sections ---------- */
   section{padding:96px 0}
+  section[id]{scroll-margin-top:84px}
   .sec-head{max-width:600px;margin-bottom:52px}
   .sec-head h2{
     font-family:var(--display);font-weight:700;
@@ -223,6 +224,14 @@
     .cta__card{flex-direction:column;align-items:flex-start;text-align:left}
     section{padding:72px 0}
   }
+  @media (max-width:640px){
+    .ticker{padding:12px 10px}
+    .ticker__track{flex-wrap:nowrap;justify-content:center}
+    .ticker span{font-size:2vw;padding:0 .3rem;letter-spacing:.02em}
+    .ticker span:not(:last-child)::after{margin-left:.5rem}
+    .cta__card{padding:40px 30px}
+    .cta__btn{width:100%}
+  }
 </style>
 </head>
 <body>
@@ -233,7 +242,7 @@
       <img src="logo.png" alt="" onerror="this.style.display='none'">
       <span class="brand__name">Walka</span>
     </a>
-    <a class="btn btn--ink" href="https://apps.apple.com/us/app/walka/id6758069435">Get the app</a>
+    <a class="btn btn--ink" href="https://apps.apple.com/us/app/walka/id6758069435">Get started</a>
   </div>
 </header>
 
@@ -247,7 +256,7 @@
         <h1>Starting is easy. <em>Sticking</em> is hard.</h1>
         <p class="hero__sub">Put real money on your daily walk. <strong>Finish your challenge and earn it back.</strong></p>
         <div class="hero__ctas">
-          <a class="btn btn--ink" href="https://apps.apple.com/us/app/walka/id6758069435">Start again, differently</a>
+          <a class="btn btn--ink" href="https://apps.apple.com/us/app/walka/id6758069435">Get Walka</a>
         </div>
         <div class="hero__levels" aria-label="Challenge levels">
           <span>Choose your pace</span>
@@ -340,7 +349,7 @@
           <p class="eyebrow">One more try, with teeth.</p>
           <h2>Your next attempt can stick.</h2>
         </div>
-        <a class="btn cta__btn" href="https://apps.apple.com/us/app/walka/id6758069435">Begin your challenge →</a>
+        <a class="btn cta__btn" href="https://apps.apple.com/us/app/walka/id6758069435">Get Walka →</a>
       </div>
     </div>
   </section>
