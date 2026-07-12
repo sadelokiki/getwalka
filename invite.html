@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>You're invited to a Walka challenge</title>
+<meta name="description" content="A friend put money on their daily walk and wants you in. Open the invite in Walka to join the challenge.">
+<link rel="icon" type="image/png" href="logo.png">
+<link rel="apple-touch-icon" href="logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&family=Nunito+Sans:ital,opsz,wght@0,6..12,400;0,6..12,600;0,6..12,700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#F7F1E8;
+    --card:#FFFFFF;
+    --ink:#1B2232;
+    --ink-soft:#6E7488;
+    --sage:#4E9C74;
+    --sage-deep:#3F8862;
+    --sage-tint:#E3F0E8;
+    --lavender:#E6DFF6;
+    --lavender-ink:#7C6BC4;
+    --line:rgba(27,34,50,.08);
+    --r-card:24px;
+    --display:'Quicksand',system-ui,sans-serif;
+    --body:'Nunito Sans',system-ui,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    font-family:var(--body);font-size:17px;line-height:1.6;color:var(--ink);
+    background:var(--cream);min-height:100vh;
+    display:flex;align-items:center;justify-content:center;padding:24px;
+    -webkit-font-smoothing:antialiased;
+  }
+  :focus-visible{outline:3px solid var(--lavender-ink);outline-offset:3px;border-radius:8px}
+  .invite{
+    background:var(--card);border-radius:var(--r-card);
+    box-shadow:0 24px 60px -20px rgba(27,34,50,.25);
+    padding:44px 36px;max-width:400px;width:100%;text-align:center;
+  }
+  .invite__logo{height:72px;width:72px;margin:0 auto 22px;display:block;
+    filter:drop-shadow(0 6px 14px rgba(27,34,50,.25));}
+  .invite__badge{
+    display:inline-block;font-size:.72rem;font-weight:800;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--lavender-ink);background:var(--lavender);
+    padding:.4rem 1rem;border-radius:999px;margin-bottom:16px;
+  }
+  h1{font-family:var(--display);font-weight:700;font-size:1.7rem;letter-spacing:-.02em;line-height:1.15;margin-bottom:10px}
+  .invite__sub{color:var(--ink-soft);font-size:.98rem;margin-bottom:26px}
+  .code{
+    display:none;margin:0 auto 26px;padding:10px 18px;max-width:max-content;
+    background:var(--cream);border-radius:12px;
+    font-family:ui-monospace,Menlo,monospace;font-weight:600;font-size:1rem;
+    letter-spacing:.08em;color:var(--ink);
+  }
+  .code span{display:block;font-family:var(--body);font-weight:700;font-size:.62rem;
+    letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:2px}
+  .btn{
+    display:flex;align-items:center;justify-content:center;gap:.5rem;width:100%;
+    font-family:var(--display);font-weight:600;font-size:1.02rem;
+    padding:1rem 1.6rem;border-radius:999px;text-decoration:none;border:none;cursor:pointer;
+    transition:transform .15s ease,background .2s ease;margin-bottom:12px;
+  }
+  .btn:active{transform:scale(.97)}
+  .btn--sage{background:var(--sage);color:#fff;box-shadow:0 8px 22px rgba(78,156,116,.35)}
+  .btn--sage:hover{background:var(--sage-deep)}
+  .btn--ink{background:var(--ink);color:#fff}
+  .btn--ink:hover{background:#10141F}
+  .btn--ghost{background:#fff;color:var(--ink);border:1.5px solid var(--line)}
+  .btn--ghost:hover{border-color:var(--ink)}
+  .invite__or{
+    display:flex;align-items:center;gap:12px;color:var(--ink-soft);
+    font-size:.78rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+    margin:22px 0 18px;
+  }
+  .invite__or::before,.invite__or::after{content:"";flex:1;height:1px;background:var(--line)}
+  .invite__hint{font-size:.82rem;color:var(--ink-soft);margin-top:18px}
+</style>
+</head>
+<body>
+  <main class="invite">
+    <img class="invite__logo" src="logo.png" alt="Walka" onerror="this.style.display='none'">
+    <span class="invite__badge">Challenge invite</span>
+    <h1>You're invited.</h1>
+    <p class="invite__sub">A friend put money on their daily walk, and they want you in. Hit the goal together and split the pot.</p>
+
+    <div class="code" id="codeBox"><span>Invite code</span><b id="codeText"></b></div>
+
+    <a id="open-in-app" href="#" class="btn btn--sage">Open in Walka</a>
+
+    <div class="invite__or"><span>Don't have the app?</span></div>
+
+    <a id="ios-store" href="https://apps.apple.com/us/app/walka/id6758069435" class="btn btn--ink">Download on the App Store</a>
+    <a id="android-store" href="#" class="btn btn--ghost" style="display:none">Get it on Google Play</a>
+
+    <p class="invite__hint">Your invite code stays in this link. Once the app is installed, come back and tap "Open in Walka."</p>
+  </main>
+
+<script>
+(function() {
+  // ------- Config -------
+  var APP_SCHEME = 'walka'; // must match CFBundleURLSchemes in the iOS app
+  var IOS_STORE_URL = 'https://apps.apple.com/us/app/walka/id6758069435';
+  // Android is not live yet. When it ships, set ANDROID_AVAILABLE = true
+  // and replace the package with the real one (NOT com.anonymous.mobile).
+  var ANDROID_AVAILABLE = false;
+  var ANDROID_STORE_URL = 'https://play.google.com/store/apps/details?id=com.susanadelokiki.mobile';
+  var FALLBACK_URL = 'https://getwalka.com';
+
+  var ua = navigator.userAgent || '';
+  var isIOS = /iP(hone|od|ad)/.test(ua);
+  var isAndroid = /Android/i.test(ua);
+  var storeUrl = isIOS ? IOS_STORE_URL
+               : (isAndroid && ANDROID_AVAILABLE) ? ANDROID_STORE_URL
+               : isAndroid ? IOS_STORE_URL // no Android app yet; iOS listing at least explains what Walka is
+               : FALLBACK_URL;
+
+  if (ANDROID_AVAILABLE) {
+    var androidBtn = document.getElementById('android-store');
+    androidBtn.href = ANDROID_STORE_URL;
+    androidBtn.style.display = 'flex';
+  }
+
+  // ------- Read the invite code from /invite/CODE -------
+  var match = window.location.pathname.match(/\/invite\/([^\/]+)/);
+  var code = match ? decodeURIComponent(match[1]) : '';
+  var link = document.getElementById('open-in-app');
+
+  if (!code) {
+    link.href = storeUrl;
+    link.textContent = 'Get Walka';
+    return;
+  }
+
+  // Show the code so people can join manually if the deep link fails
+  document.getElementById('codeText').textContent = code;
+  document.getElementById('codeBox').style.display = 'block';
+
+  var deepLink = APP_SCHEME + '://invite/' + encodeURIComponent(code) +
+                 '?code=' + encodeURIComponent(code);
+  link.href = deepLink;
+
+  // ------- Open the app, falling back to the store only if it truly didn't open -------
+  link.addEventListener('click', function(e) {
+    e.preventDefault();
+
+    var fellBack = false;
+    var timer = setTimeout(function() {
+      if (!fellBack && !document.hidden) {
+        fellBack = true;
+        window.location.href = storeUrl;
+      }
+    }, 1600);
+
+    // If the app opened, the page is hidden/suspended: cancel the fallback
+    // so tapping "Cancel" on the iOS dialog (or returning later) doesn't
+    // bounce people to the App Store by mistake.
+    function cancelFallback() {
+      clearTimeout(timer);
+      fellBack = true;
+      document.removeEventListener('visibilitychange', onVis);
+      window.removeEventListener('pagehide', cancelFallback);
+    }
+    function onVis() { if (document.hidden) cancelFallback(); }
+
+    document.addEventListener('visibilitychange', onVis);
+    window.addEventListener('pagehide', cancelFallback);
+
+    window.location.href = deepLink;
+  });
+})();
+</script>
+</body>
+</html>

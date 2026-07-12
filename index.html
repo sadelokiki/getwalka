@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Walka: For everyone on attempt number four</title>
+<meta name="description" content="Starting was never the problem. Sticking was. Walka holds you through the weeks where every fitness habit dies, with real stakes, real people, and one finished challenge that changes everything after.">
+<link rel="icon" type="image/png" href="logo.png">
+<link rel="apple-touch-icon" href="logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&family=Nunito+Sans:ital,opsz,wght@0,6..12,400;0,6..12,600;0,6..12,700;1,6..12,400;1,6..12,600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#F7F1E8;
+    --cream-deep:#EDE3D3;
+    --card:#FFFFFF;
+    --ink:#1B2232;      /* sampled from the app icon */
+    --ink-soft:#6E7488;
+    --sage:#4E9C74;
+    --sage-tint:#E3F0E8;
+    --lavender:#E6DFF6;
+    --lavender-ink:#7C6BC4;
+    --gold:#C79A3D;
+    --amber:#E5A85A;
+    --flame:#E58B5A;
+    --line:rgba(43,46,74,.08);
+    --r-card:24px;
+    --r-inner:16px;
+    --display:'Quicksand',system-ui,sans-serif;
+    --body:'Nunito Sans',system-ui,sans-serif;
+    --w:1080px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:var(--body);font-size:17px;line-height:1.65;
+    color:var(--ink);background:var(--cream);
+    -webkit-font-smoothing:antialiased;
+  }
+  img{max-width:100%;display:block}
+  .wrap{max-width:var(--w);margin:0 auto;padding:0 24px}
+  ::selection{background:var(--ink);color:var(--cream)}
+  :focus-visible{outline:3px solid var(--lavender-ink);outline-offset:3px;border-radius:8px}
+
+  /* ---------- nav ---------- */
+  .nav{
+    position:sticky;top:0;z-index:50;
+    background:color-mix(in srgb,var(--cream) 90%,transparent);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav__in{display:flex;align-items:center;justify-content:space-between;height:68px}
+  .brand{display:flex;align-items:center;gap:10px;text-decoration:none}
+  .brand img{height:36px;width:auto;filter:drop-shadow(0 3px 8px rgba(27,34,50,.22))}
+  .brand__name{font-family:var(--display);font-weight:700;font-size:1.4rem;letter-spacing:-.01em}
+  .nav .btn{padding:.6rem 1.2rem;font-size:.9rem}
+
+  /* ---------- buttons ---------- */
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:.5rem;
+    font-family:var(--display);font-weight:600;font-size:1rem;
+    padding:.95rem 1.8rem;border-radius:999px;text-decoration:none;
+    transition:transform .15s ease,box-shadow .2s ease,background .2s ease,color .2s ease,border-color .2s ease;
+    border:none;cursor:pointer;
+  }
+  .btn:active{transform:scale(.97)}
+  .btn--ink{background:var(--ink);color:#fff;box-shadow:0 8px 22px rgba(43,46,74,.25)}
+  .btn--ink:hover{background:#10141F}
+  .btn--ghost{background:#fff;color:var(--ink);border:1.5px solid var(--line);box-shadow:0 2px 8px rgba(43,46,74,.06)}
+  .btn--ghost:hover{border-color:var(--ink)}
+
+  .eyebrow{
+    font-family:var(--body);font-weight:700;font-size:.78rem;
+    letter-spacing:.16em;text-transform:uppercase;color:var(--gold);
+  }
+
+  /* ---------- hero ---------- */
+  .hero{padding:76px 0 96px;overflow:hidden}
+  .hero__grid{display:grid;grid-template-columns:1.02fr .98fr;gap:56px;align-items:center}
+  .hero h1{
+    font-family:var(--display);font-weight:700;
+    font-size:clamp(2.4rem,5vw,3.7rem);
+    line-height:1.08;letter-spacing:-.02em;
+    margin:18px 0 20px;
+  }
+  .hero h1 em{font-style:normal;color:var(--sage);position:relative;white-space:nowrap}
+  .hero h1 em::after{
+    content:"";position:absolute;left:0;right:0;bottom:.02em;height:.14em;
+    background:var(--sage-tint);z-index:-1;border-radius:99px;
+  }
+  .hero__sub{font-size:1.14rem;color:var(--ink-soft);max-width:31rem;margin-bottom:32px}
+  .hero__sub strong{color:var(--ink)}
+  .hero__ctas{display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+  .hero__levels{display:flex;gap:8px;margin-top:26px;flex-wrap:wrap;align-items:center}
+  .hero__levels span{
+    font-size:.8rem;font-weight:700;padding:.35rem .9rem;border-radius:999px;
+    background:#fff;border:1px solid var(--line);color:var(--ink-soft);
+  }
+  .hero__levels span:first-child{background:transparent;border:none;padding-left:0;font-weight:600}
+
+  /* ---------- app cards ---------- */
+  .stack{position:relative;max-width:430px;margin-left:auto}
+  .appcard{
+    background:var(--card);border-radius:var(--r-card);
+    box-shadow:0 24px 60px -20px rgba(43,46,74,.28);
+    padding:24px;position:relative;
+  }
+  .appcard--back{
+    position:absolute;inset:0;transform:rotate(4deg) translate(14px,-18px);
+    box-shadow:0 16px 40px -20px rgba(43,46,74,.2);z-index:0;
+  }
+  .appcard--front{z-index:1;transform:rotate(-1.5deg)}
+  .appcard__row{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
+  .badge{font-size:.82rem;font-weight:700;padding:.32rem .95rem;border-radius:999px}
+  .badge--lav{background:var(--lavender);color:var(--lavender-ink)}
+  .badge--sage{background:var(--sage-tint);color:var(--sage)}
+  .appcard__meta{font-size:.9rem;font-weight:700;color:var(--ink-soft);display:flex;align-items:center;gap:6px}
+  .appcard__meta--gold{color:var(--gold)}
+  .appcard h3{font-family:var(--display);font-weight:700;font-size:1.5rem;letter-spacing:-.01em}
+  .appcard__desc{color:var(--ink-soft);font-size:.98rem;margin:2px 0 14px}
+  .appcard__money{
+    display:flex;align-items:center;gap:22px;
+    background:var(--cream);border-radius:var(--r-inner);padding:16px 18px;
+  }
+  .appcard__money .lbl{
+    display:block;font-size:.68rem;font-weight:800;letter-spacing:.12em;
+    text-transform:uppercase;color:var(--ink-soft);margin-bottom:2px;
+  }
+  .appcard__money .amt{font-family:var(--display);font-weight:700;font-size:1.45rem}
+  .appcard__money .amt--sage{color:var(--sage)}
+  .appcard__go{
+    margin-left:auto;width:46px;height:46px;border-radius:50%;
+    background:var(--ink);color:#fff;display:flex;align-items:center;justify-content:center;
+    font-size:1.1rem;flex:none;
+  }
+  .appcard__walk{margin-top:16px}
+  .appcard__walk-row{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:7px}
+  .appcard__walk-row .l{font-size:.85rem;font-weight:700;color:var(--ink-soft)}
+  .appcard__walk-row .c{font-family:var(--display);font-weight:700;font-size:1rem}
+  .appcard__walk-row .c span{color:var(--ink-soft);font-weight:600}
+  .bar{height:10px;border-radius:99px;background:var(--cream-deep);overflow:hidden}
+  .bar__fill{height:100%;width:0;border-radius:99px;background:var(--sage);transition:width 1.6s cubic-bezier(.2,.7,.2,1)}
+  .appcard__streak{
+    margin-top:12px;font-size:.85rem;font-weight:700;color:var(--sage);
+    display:flex;align-items:center;gap:6px;
+  }
+
+  /* ---------- ticker ---------- */
+  .ticker{background:var(--ink);color:var(--cream);overflow:hidden;padding:14px 0}
+  .ticker__track{display:flex;width:max-content;animation:march 28s linear infinite}
+  .ticker span{
+    font-family:var(--display);font-weight:600;font-size:.85rem;letter-spacing:.1em;
+    text-transform:uppercase;padding:0 1.5rem;white-space:nowrap;
+  }
+  .ticker span::after{content:"✦";margin-left:3rem;opacity:.5}
+  @keyframes march{to{transform:translateX(-50%)}}
+
+  /* ---------- sections ---------- */
+  section{padding:96px 0}
+  .sec-head{max-width:600px;margin-bottom:52px}
+  .sec-head h2{
+    font-family:var(--display);font-weight:700;
+    font-size:clamp(1.8rem,3.4vw,2.5rem);letter-spacing:-.015em;line-height:1.12;
+    margin-top:14px;
+  }
+  .sec-head p{color:var(--ink-soft);margin-top:12px}
+
+  /* ---------- sound familiar ---------- */
+  .familiar__weeks{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-bottom:44px}
+  .fweek{
+    background:var(--card);border-radius:var(--r-card);padding:28px;
+    box-shadow:0 12px 36px -18px rgba(43,46,74,.16);
+  }
+  .fweek__tag{
+    display:inline-block;font-size:.72rem;font-weight:800;letter-spacing:.12em;
+    text-transform:uppercase;color:var(--ink-soft);margin-bottom:12px;
+  }
+  .fweek p{font-size:1.02rem;font-style:italic;color:var(--ink);line-height:1.55}
+  .fweek--fade1 p{color:#4E5168}
+  .fweek--fade2 p{color:var(--ink-soft)}
+  .familiar__turn{
+    max-width:620px;font-size:1.18rem;line-height:1.6;
+  }
+  .familiar__turn strong{color:var(--sage)}
+
+  /* ---------- the arc (signature) ---------- */
+  .arc{background:var(--card)}
+  .cal{display:grid;gap:18px;max-width:860px}
+  .cal__row{
+    display:grid;grid-template-columns:200px 1fr;gap:24px;align-items:center;
+  }
+  .cal__label h3{font-family:var(--display);font-weight:700;font-size:1.05rem;margin-bottom:2px}
+  .cal__label p{font-size:.82rem;color:var(--ink-soft);line-height:1.45}
+  .cal__days{display:grid;grid-template-columns:repeat(10,1fr);gap:8px}
+  .cal__d{
+    aspect-ratio:1;border-radius:12px;background:var(--cream-deep);
+    display:flex;align-items:center;justify-content:center;
+    font-family:var(--display);font-weight:700;font-size:.78rem;color:transparent;
+    transition:background .35s ease,color .35s ease,transform .35s ease;
+    position:relative;
+  }
+  .cal__d.on{background:var(--sage);color:#fff}
+  .cal__d--slip.on{background:var(--amber);color:#fff}
+  .cal__d--quit::after{
+    content:"";position:absolute;inset:-4px;border:2px dashed var(--gold);border-radius:15px;
+  }
+  .cal__legend{
+    display:flex;gap:26px;flex-wrap:wrap;margin-top:30px;font-size:.88rem;color:var(--ink-soft);
+  }
+  .cal__legend div{display:flex;align-items:center;gap:9px}
+  .swatch{width:16px;height:16px;border-radius:5px;flex:none}
+  .swatch--quit{background:transparent;border:2px dashed var(--gold)}
+  .swatch--slip{background:var(--amber)}
+  .swatch--walk{background:var(--sage)}
+  .arc__close{
+    margin-top:48px;max-width:620px;font-size:1.18rem;line-height:1.6;
+  }
+  .arc__close strong{color:var(--sage)}
+
+  /* ---------- coach ---------- */
+  .coach__grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;max-width:860px}
+  .coach{
+    background:var(--card);border-radius:var(--r-card);padding:30px 28px;
+    box-shadow:0 12px 36px -18px rgba(27,34,50,.16);
+  }
+  .coach__tag{
+    display:inline-flex;align-items:center;gap:.5rem;
+    font-family:var(--display);font-weight:700;font-size:.92rem;
+    padding:.5rem 1.1rem;border-radius:999px;margin-bottom:20px;
+  }
+  .coach--soft .coach__tag{background:var(--lavender);color:var(--lavender-ink)}
+  .coach--tough .coach__tag{background:var(--ink);color:var(--cream)}
+  .coach__scene{
+    font-size:.72rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--ink-soft);margin-bottom:14px;
+  }
+  .bubble{
+    border-radius:18px 18px 18px 5px;padding:14px 17px;
+    font-size:.97rem;line-height:1.5;max-width:95%;
+  }
+  .coach--soft .bubble{background:#F3EFFC;color:var(--ink)}
+  .coach--tough .bubble{background:var(--ink);color:var(--cream)}
+  .coach__note{font-size:.85rem;color:var(--ink-soft);margin-top:16px}
+  .coach__foot{max-width:620px;margin-top:40px;font-size:1.05rem;color:var(--ink-soft)}
+  .coach__foot strong{color:var(--ink)}
+
+  /* ---------- how ---------- */
+  .modes{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+  .mode{
+    background:var(--card);border-radius:var(--r-card);padding:36px 32px;
+    box-shadow:0 12px 36px -18px rgba(43,46,74,.18);
+  }
+  .mode--group{background:var(--ink);color:var(--cream)}
+  .mode__pill{
+    display:inline-flex;align-items:center;gap:.5rem;
+    font-family:var(--display);font-weight:700;font-size:.95rem;
+    padding:.55rem 1.2rem;border-radius:999px;margin-bottom:14px;
+    background:var(--cream);color:var(--ink);
+  }
+  .mode--group .mode__pill{background:rgba(255,255,255,.14);color:var(--cream)}
+  .mode__intro{font-size:1rem;color:var(--ink-soft);margin-bottom:28px}
+  .mode__intro strong{color:var(--ink)}
+  .mode--group .mode__intro{color:#B7BACB}
+  .mode--group .mode__intro strong{color:var(--cream)}
+  .mode ol{list-style:none;display:grid;gap:22px}
+  .mode li{display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:start}
+  .mode__dot{
+    width:12px;height:12px;border-radius:50%;background:var(--sage);margin-top:8px;
+    box-shadow:0 0 0 4px var(--sage-tint);flex:none;
+  }
+  .mode--group .mode__dot{box-shadow:0 0 0 4px rgba(255,255,255,.12)}
+  .mode li:last-child .mode__dot{background:var(--gold);box-shadow:0 0 0 4px rgba(199,154,61,.18)}
+  .mode h3{font-family:var(--display);font-weight:700;font-size:1.08rem;margin-bottom:2px}
+  .mode p{font-size:.95rem;color:var(--ink-soft)}
+  .mode--group p{color:#B7BACB}
+
+  /* ---------- cta ---------- */
+  .cta{background:var(--ink);color:var(--cream);text-align:center;padding:110px 0}
+  .cta .eyebrow{color:#D9BE7E}
+  .cta h2{
+    font-family:var(--display);font-weight:700;
+    font-size:clamp(2rem,4.4vw,3.1rem);letter-spacing:-.02em;line-height:1.12;
+    margin:16px auto 18px;max-width:15em;
+  }
+  .cta h2 em{font-style:normal;color:#8FCEAD}
+  .cta p{color:#B7BACB;max-width:31rem;margin:0 auto 36px}
+  .cta .btn--sage{background:var(--sage);color:#fff;box-shadow:0 8px 26px rgba(78,156,116,.4)}
+  .cta .btn--sage:hover{background:#3F8862}
+
+  /* ---------- footer ---------- */
+  .footer{background:var(--ink);color:#8B8EA3;border-top:1px solid rgba(255,255,255,.08);padding:28px 0}
+  .footer__in{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+  .footer p{font-size:.84rem}
+  .footer .brand__name{color:var(--cream);font-size:1.1rem}
+
+  /* reveals */
+  .rv{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
+  .rv.in{opacity:1;transform:none}
+
+  @media (prefers-reduced-motion:reduce){
+    .ticker__track{animation:none}
+    .rv{opacity:1;transform:none;transition:none}
+    .bar__fill{transition:none}
+    .cal__d{transition:none}
+    html{scroll-behavior:auto}
+  }
+  @media (max-width:900px){
+    .hero{padding:56px 0 72px}
+    .hero__grid{grid-template-columns:1fr;gap:56px}
+    .stack{margin:0 auto}
+    .appcard--front{transform:none}
+    .appcard--back{transform:rotate(3deg) translate(10px,-12px)}
+    .familiar__weeks{grid-template-columns:1fr}
+    .coach__grid{grid-template-columns:1fr}
+    .cal__row{grid-template-columns:1fr;gap:12px}
+    .modes{grid-template-columns:1fr}
+    section{padding:72px 0}
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav__in">
+    <a class="brand" href="#top" aria-label="Walka home">
+      <img src="logo.png" alt="" onerror="this.style.display='none'">
+      <span class="brand__name">Walka</span>
+    </a>
+    <a class="btn btn--ink" href="https://apps.apple.com/us/app/walka/id6758069435">Get the app</a>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero__grid">
+      <div>
+        <p class="eyebrow">For everyone on attempt number four</p>
+        <h1>Starting was never the problem. <em>Sticking</em> was.</h1>
+        <p class="hero__sub">You've tried the trackers, the streaks, the Monday restarts. <strong>On the days motivation doesn't show up, your stake does.</strong></p>
+        <div class="hero__ctas">
+          <a class="btn btn--ink" href="https://apps.apple.com/us/app/walka/id6758069435">Start again, differently</a>
+          <a class="btn btn--ghost" href="#arc">See how it sticks</a>
+        </div>
+        <div class="hero__levels" aria-label="Challenge levels">
+          <span>Every pace welcome</span>
+          <span>Beginner · 5K</span>
+          <span>Intermediate · 10K</span>
+          <span>Advanced · 12K+</span>
+        </div>
+      </div>
+
+      <div class="stack" aria-label="Example challenges from the app">
+        <div class="appcard appcard--back" aria-hidden="true">
+          <div class="appcard__row">
+            <span class="badge badge--sage">Beginner</span>
+            <span class="appcard__meta appcard__meta--gold">✦ Solo</span>
+          </div>
+          <h3>Solo 7-Day 5K</h3>
+          <p class="appcard__desc">A gentle daily walk for 7 days</p>
+          <div class="appcard__money">
+            <div><span class="lbl">Commit</span><span class="amt">$40</span></div>
+            <div><span class="lbl">Earn back</span><span class="amt amt--sage">$40</span></div>
+            <span class="appcard__go">→</span>
+          </div>
+        </div>
+
+        <div class="appcard appcard--front">
+          <div class="appcard__row">
+            <span class="badge badge--lav">Intermediate</span>
+            <span class="appcard__meta">⚑ Up to 8 friends</span>
+          </div>
+          <h3>30-Day 10K</h3>
+          <p class="appcard__desc">A daily walk, every day for a month</p>
+          <div class="appcard__money">
+            <div><span class="lbl">Entry</span><span class="amt">$30</span></div>
+            <div><span class="lbl">Win up to</span><span class="amt amt--sage">$38</span></div>
+            <span class="appcard__go">→</span>
+          </div>
+          <div class="appcard__walk">
+            <div class="appcard__walk-row">
+              <span class="l">Today's walk</span>
+              <span class="c"><b id="stepCount">0</b> <span>/ 10,000</span></span>
+            </div>
+            <div class="bar"><div class="bar__fill" id="stepBar"></div></div>
+            <p class="appcard__streak">🔥 Day 19. Further than you've ever made it</p>
+            <p class="appcard__streak" style="color:var(--amber);margin-top:4px">🛟 Grace day used on day 16. Challenge intact</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TICKER -->
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker__track">
+      <span>Show up anyway</span><span>Day 19 still counts</span><span>Grace days are built in</span><span>Finishers split the pot</span><span>Quit quitting</span>
+      <span>Show up anyway</span><span>Day 19 still counts</span><span>Grace days are built in</span><span>Finishers split the pot</span><span>Quit quitting</span>
+    </div>
+  </div>
+
+  <!-- SOUND FAMILIAR -->
+  <section>
+    <div class="wrap">
+      <div class="sec-head rv">
+        <p class="eyebrow">Sound familiar?</p>
+        <h2>You've done the fresh start before.</h2>
+      </div>
+      <div class="familiar__weeks">
+        <div class="fweek rv">
+          <span class="fweek__tag">Week one</span>
+          <p>New shoes. New playlist. 10,000 steps before lunch. This time feels different.</p>
+        </div>
+        <div class="fweek fweek--fade1 rv">
+          <span class="fweek__tag">Week two</span>
+          <p>A busy Tuesday. A rainy Thursday. "I'll catch up on the weekend."</p>
+        </div>
+        <div class="fweek fweek--fade2 rv">
+          <span class="fweek__tag">Week three</span>
+          <p>The app is still on your phone. You just don't open it anymore.</p>
+        </div>
+      </div>
+      <p class="familiar__turn rv">That's not a discipline problem. Motivation is a feeling, and feelings run out. <strong>You never needed more willpower. You needed something that holds you through week two, and forgives one bad day instead of ending on it.</strong></p>
+    </div>
+  </section>
+
+  <!-- THE ARC -->
+  <section class="arc" id="arc">
+    <div class="wrap">
+      <div class="sec-head rv">
+        <p class="eyebrow">The 30-day arc</p>
+        <h2>How a walk becomes who you are.</h2>
+        <p>Habits aren't built on the good days. They're built on the days you'd normally skip. And because Walka includes grace days, one bad Tuesday can't end the whole thing. Perfection was never the goal. Finishing is.</p>
+      </div>
+
+      <div class="cal rv" id="cal">
+        <div class="cal__row">
+          <div class="cal__label">
+            <h3>Days 1–10 · Motivation carries you</h3>
+            <p>The easy part. Week one always worked. It always did.</p>
+          </div>
+          <div class="cal__days" data-row="0"></div>
+        </div>
+        <div class="cal__row">
+          <div class="cal__label">
+            <h3>Days 11–20 · Your stake carries you</h3>
+            <p>This is where it ended every time before. Now skipping costs real money, and your group can see. So you go anyway.</p>
+          </div>
+          <div class="cal__days" data-row="1"></div>
+        </div>
+        <div class="cal__row">
+          <div class="cal__label">
+            <h3>Days 21–30 · The habit carries you</h3>
+            <p>Somewhere in week three it flips: the walk stops being a decision. You go because it's what you do now.</p>
+          </div>
+          <div class="cal__days" data-row="2"></div>
+        </div>
+      </div>
+
+      <div class="cal__legend rv">
+        <div><span class="swatch swatch--walk"></span>Walked</div>
+        <div><span class="swatch swatch--quit"></span>Day 12: where you used to quit</div>
+        <div><span class="swatch swatch--slip"></span>Day 16: a grace day. Life won that Tuesday. The challenge didn't end, and neither did you.</div>
+      </div>
+
+      <p class="arc__close rv">Finish once and something bigger than the pot changes: <strong>you stop being someone who always quits.</strong></p>
+    </div>
+  </section>
+
+  <!-- HOW -->
+  <section id="how">
+    <div class="wrap">
+      <div class="sec-head rv">
+        <p class="eyebrow">How it works</p>
+        <h2>Two ways to hold yourself to it.</h2>
+      </div>
+      <div class="modes">
+        <div class="mode rv">
+          <span class="mode__pill">✦ Bet on Yourself</span>
+          <p class="mode__intro"><strong>Just you and the sidewalk.</strong> Set a personal goal, put money on the line, and earn it back when you finish.</p>
+          <ol>
+            <li><span class="mode__dot"></span><div><h3>Choose your walk</h3><p>A 5K stroll or a 12K trek. Pick the daily distance, how many days, and what you're committing.</p></div></li>
+            <li><span class="mode__dot"></span><div><h3>Get out the door</h3><p>Your phone counts the walk for you. No logging, no fudging. And grace days are built in, for the days life wins.</p></div></li>
+            <li><span class="mode__dot"></span><div><h3>Finish and earn it back</h3><p>Walk your days and every dollar comes home with you. It was never about the money. It's about who kept it.</p></div></li>
+          </ol>
+        </div>
+        <div class="mode mode--group rv">
+          <span class="mode__pill">⚑ Group Pool</span>
+          <p class="mode__intro"><strong>Walk together, even apart.</strong> Join a small group, commit money, and earn bonus rewards from those who don't finish.</p>
+          <ol>
+            <li><span class="mode__dot"></span><div><h3>Open a pool</h3><p>Invite up to 8 people you trust: the friends who'll notice if your day goes quiet on the board.</p></div></li>
+            <li><span class="mode__dot"></span><div><h3>Walk your own way</h3><p>Morning loops, lunch breaks, evening strolls. The board updates daily, and showing up is visible.</p></div></li>
+            <li><span class="mode__dot"></span><div><h3>Finishers split the pot</h3><p>Complete the challenge and win more than you put in, funded by the ones who stopped. This time, that's not you.</p></div></li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COACH -->
+  <section>
+    <div class="wrap">
+      <div class="sec-head rv">
+        <p class="eyebrow">Choose your coach</p>
+        <h2>Accountability, in the voice you actually listen to.</h2>
+        <p>Some people move for encouragement. Some people move when someone calls them out. Walka lets you pick. Same walk, same stake, very different energy.</p>
+      </div>
+      <div class="coach__grid">
+        <div class="coach coach--soft rv">
+          <span class="coach__tag">👑 Princess treatment</span>
+          <p class="coach__scene">4:30 PM · 3,200 / 10,000 steps</p>
+          <p class="bubble">Hi lovely, the afternoon got away from you, and that's okay. Golden-hour light and 6,800 steps between you and day 20. Shoes on, queen. 💅</p>
+          <p class="coach__note">Warm, patient, on your side. Zero shame.</p>
+        </div>
+        <div class="coach coach--tough rv">
+          <span class="coach__tag">🔥 Tough love</span>
+          <p class="coach__scene">4:30 PM · 3,200 / 10,000 steps</p>
+          <p class="bubble">It's 4:30 and you're at 3,200. The couch didn't put $30 into this challenge. You did. Get up.</p>
+          <p class="coach__note">Blunt, direct, allergic to your excuses.</p>
+        </div>
+      </div>
+      <p class="coach__foot rv"><strong>You know which one gets you off the couch.</strong> Pick it, and switch anytime.</p>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta">
+    <div class="wrap">
+      <p class="eyebrow rv">Free to download</p>
+      <h2 class="rv">Finish once. It changes <em>every attempt after</em>.</h2>
+      <p class="rv">The first challenge you actually complete rewrites the story you tell about yourself. Pick a distance, put something on the line, and let's get you to day 30.</p>
+      <a class="btn btn--sage rv" href="https://apps.apple.com/us/app/walka/id6758069435">Download on the App Store</a>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="wrap footer__in">
+    <span class="brand" style="gap:10px;display:inline-flex;align-items:center"><img src="logo.png" alt="" style="height:28px" onerror="this.style.display='none'"><span class="brand__name">Walka</span></span>
+    <p>© Walka. Built for walking more, together.</p>
+  </div>
+</footer>
+
+<script>
+  // Animated walk count on the front card
+  (function(){
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var el = document.getElementById('stepCount');
+    var bar = document.getElementById('stepBar');
+    var target = 9317, goal = 10000, pct = target/goal*100;
+    if (reduce){ el.textContent = target.toLocaleString(); bar.style.width = pct+'%'; return; }
+    var t0 = null;
+    function tick(ts){
+      if(!t0) t0 = ts;
+      var p = Math.min((ts-t0)/1600, 1);
+      var eased = 1-Math.pow(1-p,3);
+      el.textContent = Math.round(target*eased).toLocaleString();
+      if(p<1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+    requestAnimationFrame(function(){ bar.style.width = pct+'%'; });
+  })();
+
+  // Build the 30-day calendar
+  (function(){
+    var rows = document.querySelectorAll('.cal__days');
+    var day = 1;
+    rows.forEach(function(row){
+      for (var i=0;i<10;i++){
+        var d = document.createElement('div');
+        d.className = 'cal__d';
+        d.textContent = day;
+        if (day === 12) d.classList.add('cal__d--quit');
+        if (day === 16) d.classList.add('cal__d--slip');
+        row.appendChild(d);
+        day++;
+      }
+    });
+
+    // Fill sequentially when the calendar scrolls into view
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var cells = document.querySelectorAll('.cal__d');
+    function fill(){
+      cells.forEach(function(c,i){
+        if (reduce){ c.classList.add('on'); }
+        else { setTimeout(function(){ c.classList.add('on'); }, 60*i); }
+      });
+    }
+    if (reduce || !('IntersectionObserver' in window)){ fill(); return; }
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if(en.isIntersecting){ fill(); io.disconnect(); }
+      });
+    },{threshold:.3});
+    io.observe(document.getElementById('cal'));
+  })();
+
+  // Scroll reveals
+  (function(){
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var els = document.querySelectorAll('.rv');
+    if (reduce || !('IntersectionObserver' in window)){
+      els.forEach(function(e){ e.classList.add('in'); });
+      return;
+    }
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); }
+      });
+    },{threshold:.15});
+    els.forEach(function(e){ io.observe(e); });
+  })();
+</script>
+</body>
+</html>
