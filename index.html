@@ -123,9 +123,11 @@
   .appcard h3{font-family:var(--display);font-weight:700;font-size:1.5rem;letter-spacing:-.01em}
   .appcard__desc{color:var(--ink-soft);font-size:.98rem;margin:2px 0 14px}
   .appcard__money{
-    display:flex;align-items:center;gap:22px;
-    background:var(--cream);border-radius:var(--r-inner);padding:16px 18px;
+    display:flex;align-items:center;
+    background:var(--cream);border-radius:var(--r-inner);padding:18px 20px;
   }
+  .appcard__money>div{flex:1}
+  .appcard__money>div+div{border-left:1px solid var(--line);padding-left:22px}
   .appcard__money .lbl{
     display:block;font-size:.68rem;font-weight:800;letter-spacing:.12em;
     text-transform:uppercase;color:var(--ink-soft);margin-bottom:2px;
@@ -266,32 +268,17 @@
         </div>
       </div>
 
-      <div class="stack" aria-label="Example challenges from the app">
-        <div class="appcard appcard--back" aria-hidden="true">
+      <div class="stack" aria-label="Example challenge from the app">
+        <div class="appcard">
           <div class="appcard__row">
-            <span class="badge badge--sage">Beginner</span>
-            <span class="appcard__meta appcard__meta--gold">✦ Solo</span>
-          </div>
-          <h3>Solo 7-Day 5K</h3>
-          <p class="appcard__desc">A gentle daily walk for 7 days</p>
-          <div class="appcard__money">
-            <div><span class="lbl">Commit</span><span class="amt">$40</span></div>
-            <div><span class="lbl">Earn back</span><span class="amt amt--sage">$40</span></div>
-            <span class="appcard__go">→</span>
-          </div>
-        </div>
-
-        <div class="appcard appcard--front">
-          <div class="appcard__row">
-            <span class="badge badge--lav">Intermediate</span>
-            <span class="appcard__meta">⚑ Up to 8 friends</span>
+            <span class="badge badge--lav">Your challenge</span>
+            <span class="appcard__meta">Day 19 of 30</span>
           </div>
           <h3>30-Day 10K</h3>
-          <p class="appcard__desc">A daily walk, every day for a month</p>
+          <p class="appcard__desc">Walk 10,000 steps each day for a month.</p>
           <div class="appcard__money">
-            <div><span class="lbl">Entry</span><span class="amt">$30</span></div>
-            <div><span class="lbl">Win up to</span><span class="amt amt--sage">$50</span></div>
-            <span class="appcard__go">→</span>
+            <div><span class="lbl">Your stake</span><span class="amt">$30</span></div>
+            <div><span class="lbl">Finish to earn</span><span class="amt amt--sage">$38</span></div>
           </div>
           <div class="appcard__walk">
             <div class="appcard__walk-row">
@@ -299,8 +286,7 @@
               <span class="c"><b id="stepCount">0</b> <span>/ 10,000</span></span>
             </div>
             <div class="bar"><div class="bar__fill" id="stepBar"></div></div>
-            <p class="appcard__streak">🔥 Day 19. Further than you've ever made it</p>
-            <p class="appcard__streak" style="color:var(--amber);margin-top:4px">🛟 Grace day used on day 16. Challenge intact</p>
+            <p class="appcard__streak">✓ 683 steps left today</p>
           </div>
         </div>
       </div>
