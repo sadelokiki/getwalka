@@ -213,6 +213,9 @@
   .footer{background:var(--ink);color:#8B8EA3;border-top:1px solid rgba(255,255,255,.08);padding:28px 0}
   .footer__in{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
   .footer p{font-size:.84rem}
+  .footer a{color:#B9BCCB;text-decoration:none;font-size:.84rem}
+  .footer a:hover{color:var(--cream)}
+  .footer__links{display:flex;gap:20px;flex-wrap:wrap}
   .footer .brand__name{color:var(--cream);font-size:1.1rem}
 
   /* reveals */
@@ -353,6 +356,10 @@
 <footer class="footer">
   <div class="wrap footer__in">
     <span class="brand" style="gap:10px;display:inline-flex;align-items:center"><img src="logo.png" alt="" style="height:28px" onerror="this.style.display='none'"><span class="brand__name">Walka</span></span>
+    <div class="footer__links">
+      <a href="/terms">Terms of Service</a>
+      <a href="/privacy">Privacy Policy</a>
+    </div>
     <p>© Walka. Built for walking more, together.</p>
   </div>
 </footer>
